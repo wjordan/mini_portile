@@ -17,6 +17,7 @@ GEM_SPEC = Gem::Specification.new do |s|
 
   # dependencies (add_dependency)
   # development dependencies (add_development_dependency)
+  s.add_development_dependency "isolate", "~> 3.0"
 
   # components, files and paths
   s.files = FileList["examples/Rakefile", "lib/**/*.rb", "Rakefile", "*.{rdoc,txt}"]

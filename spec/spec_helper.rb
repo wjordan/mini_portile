@@ -7,6 +7,7 @@ end
 require "rspec/core"
 require "support/temporary_directory"
 require "support/download_helper"
+require "support/black_hole"
 
 RSpec.configure do |config|
   config.include Support::TemporaryDirectory

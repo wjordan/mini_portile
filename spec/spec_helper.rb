@@ -5,6 +5,8 @@ rescue LoadError
 end
 
 require "rspec/core"
+require "support/temporary_directory"
 
 RSpec.configure do |config|
+  config.include Support::TemporaryDirectory
 end

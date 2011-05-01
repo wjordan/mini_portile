@@ -9,12 +9,12 @@ class MiniPortile
   attr_writer :configure_options
   attr_accessor :host, :files, :target, :logger
 
-  def initialize(name, version, options = {})
+  def initialize(name, version)
     @name = name
     @version = version
     @target = 'ports'
     @files = []
-    @logger = options.fetch(:logger, STDOUT)
+    @logger = STDOUT
 
     @original_host = @host = RbConfig::CONFIG['arch']
   end

@@ -18,5 +18,11 @@ describe MiniPortile do
       recipe.download
       FakeWeb.should have_requested(:get, url)
     end
+
+    it "places the downladed file in archives directory" do
+      recipe.download
+      archives = Dir.glob("ports/archives/*.*")
+      archives.should include("ports/archives/amhello-1.0.tar.gz")
+    end
   end
 end

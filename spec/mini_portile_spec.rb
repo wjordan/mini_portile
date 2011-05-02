@@ -60,6 +60,11 @@ describe MiniPortile do
       logs = Dir.glob("tmp/**/ports/amhello/1.0/configure.log")
       logs.should_not be_empty
     end
+
+    it "checks for previous configured state" do
+      recipe.should_receive(:configured?).and_return(true)
+      recipe.configure
+    end
   end
 
   describe "#configured?" do
@@ -115,6 +120,11 @@ describe MiniPortile do
       recipe.install
       artifacts = Dir.glob("ports/**/amhello/1.0/bin/*")
       artifacts.should_not be_empty
+    end
+
+    it "checks for previous installed state" do
+      recipe.should_receive(:installed?).and_return(true)
+      recipe.install
     end
   end
 

@@ -142,4 +142,41 @@ describe MiniPortile do
       }.should change { recipe.installed? }
     end
   end
+
+  describe "#cook" do
+    before :each do
+      recipe.stub(:downloaded?).and_return(false)
+      recipe.stub(:download)
+      recipe.stub(:extract)
+      recipe.stub(:configured?).and_return(false)
+      recipe.stub(:configure)
+      recipe.stub(:compile)
+      recipe.stub(:installed?).and_return(false)
+      recipe.stub(:install)
+    end
+
+    it "process download before extract" do
+      recipe.should_receive(:download).ordered
+      recipe.should_receive(:extract).ordered
+      recipe.cook
+    end
+
+    it "process extract before configure" do
+      recipe.should_receive(:extract).ordered
+      recipe.should_receive(:configure).ordered
+      recipe.cook
+    end
+
+    it "process configure before compile" do
+      recipe.should_receive(:configure).ordered
+      recipe.should_receive(:compile).ordered
+      recipe.cook
+    end
+
+    it "process compile before install" do
+      recipe.should_receive(:compile).ordered
+      recipe.should_receive(:install).ordered
+      recipe.cook
+    end
+  end
 end

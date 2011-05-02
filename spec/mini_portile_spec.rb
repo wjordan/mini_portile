@@ -25,6 +25,14 @@ describe MiniPortile do
     end
   end
 
+  describe "#downloaded?" do
+    it "changes after all files have been downloaded" do
+      expect {
+        recipe.download
+      }.should change { recipe.downloaded? }
+    end
+  end
+
   describe "#extract" do
     before :each do
       recipe.download

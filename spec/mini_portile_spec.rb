@@ -179,4 +179,23 @@ describe MiniPortile do
       recipe.cook
     end
   end
+
+  describe "#activate" do
+    before :each do
+      @old_path = ENV["PATH"]
+      recipe.cook
+    end
+
+    after :each do
+      ENV["PATH"] = @old_path
+    end
+
+    it "makes recipe's executables accessible in PATH" do
+      path = "amhello/1.0/bin"
+      path.gsub!(File::SEPARATOR, File::ALT_SEPARATOR) if File::ALT_SEPARATOR
+
+      recipe.activate
+      ENV["PATH"].should match(Regexp.new(Regexp.escape(path)))
+    end
+  end
 end

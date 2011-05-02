@@ -13,4 +13,7 @@ require "support/recorder"
 RSpec.configure do |config|
   config.include Support::TemporaryDirectory
   config.include Support::DownloadHelper
+
+  # uncomment for focused mode
+  #config.filter_run :focus => true
 end

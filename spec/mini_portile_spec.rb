@@ -92,4 +92,44 @@ describe MiniPortile do
       logs.should_not be_empty
     end
   end
+
+  describe "#install" do
+    before :each do
+      recipe.download
+      recipe.extract
+      recipe.configure
+      recipe.compile
+    end
+
+    it "succeed in the install process" do
+      recipe.install.should be_true
+    end
+
+    it "generates a log from install output" do
+      recipe.install
+      logs = Dir.glob("tmp/**/ports/amhello/1.0/install.log")
+      logs.should_not be_empty
+    end
+
+    it "places the installation in ports directory" do
+      recipe.install
+      artifacts = Dir.glob("ports/**/amhello/1.0/bin/*")
+      artifacts.should_not be_empty
+    end
+  end
+
+  describe "#installed?" do
+    before :each do
+      recipe.download
+      recipe.extract
+      recipe.configure
+      recipe.compile
+    end
+
+    it "changes after install process succeeded" do
+      expect {
+        recipe.install
+      }.should change { recipe.installed? }
+    end
+  end
 end

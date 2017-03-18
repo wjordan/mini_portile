@@ -5,7 +5,6 @@ $env:RUBYOPT = "-rdevkit"
 
 push-location mini_portile
 
-    stream-cmd "unzip" "/?"
     stream-cmd "gem" "install bundler"
     stream-cmd "bundle" "install"
     stream-cmd "bundle" "exec rake test"

@@ -5,7 +5,7 @@ require 'concourse'
 namespace :test do
   desc "Test MiniPortile by running unit tests"
   task :unit do
-    sh "ruby -w -W2 -I. -Ilib -e \"#{Dir["test/test_*.rb"].map{|f| "require '#{f}';"}.join}\" -- #{ENV['TESTOPTS']} -v"
+    sh "ruby -w -W2 -I. -Ilib -e \"#{Dir["test/test_*.rb"].map{|f| "require '#{f}';"}.join}\" -- #{ENV['TESTOPTS']}"
   end
 
   desc "Test MiniPortile by compiling examples"
